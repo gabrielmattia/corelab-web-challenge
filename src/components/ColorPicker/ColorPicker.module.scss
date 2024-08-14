@@ -1,0 +1,42 @@
+.ColorPicker {
+  position: relative;
+  display: inline-block;
+}
+
+.PickerButton {
+  cursor: pointer;
+}
+
+.ColorPalette {
+  display: flex;
+  flex-wrap: wrap; 
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  width: 574.61px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  transition: opacity 0.3s ease, width 0.3s ease, height 0.3s ease;
+}
+
+.ColorSwatch {
+  width: 37px;
+  height: 37px;
+  border-radius: 50%;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .ColorPalette {
+    width: 286.94px;
+    height: auto; 
+    bottom: -80px !important;
+  }
+
+  .ColorSwatch {
+    margin: 0;
+  }
+}
