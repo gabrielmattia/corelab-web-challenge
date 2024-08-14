@@ -2,10 +2,11 @@ import React, { useState, useEffect, useRef } from "react";
 import styles from "./ColorPicker.module.scss";
 
 interface ColorPickerProps {
-  setColor:  React.Dispatch<React.SetStateAction<string>>;
+  setColor: React.Dispatch<React.SetStateAction<string>>;
+  handleSetColor: (color:string) => void;
 }
 
-const ColorPicker: React.FC<ColorPickerProps> = ({ setColor }) => {
+const ColorPicker: React.FC<ColorPickerProps> = ({ setColor,handleSetColor }) => {
   const [showColors, setShowColors] = useState(false);
 
   const colors = [
@@ -42,6 +43,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ setColor }) => {
 
   const handleColorClick = (color: string) => {
     setColor(color);
+    handleSetColor(color);
     setShowColors(false);
   };
 
@@ -93,9 +95,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ setColor }) => {
         )}
       </div>
       {showColors && (
-        <div
-          className={styles.ColorPalette  }
-        >
+        <div className={styles.ColorPalette}>
           {colors.map((color, index) => (
             <div
               key={index}
@@ -108,7 +108,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ setColor }) => {
                 margin: "0 5px",
                 cursor: "pointer",
               }}
-              className={styles.ColorSwatch  }
+              className={styles.ColorSwatch}
             />
           ))}
         </div>

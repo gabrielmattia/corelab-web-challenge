@@ -27,14 +27,10 @@ const Card = (props: ICard) => {
 
   const handleClick = () => {
     setUpdate(!update);
-    console.log("click");
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      console.log("Title:", title);
-      console.log("Description:", description);
-      console.log("favorite:", isImportant);
       const task: ITask = {
         description: description,
         favorite: String(isImportant) ,
@@ -60,6 +56,18 @@ const Card = (props: ICard) => {
   const handleDelete = () => {
     console.log(id)
     deleteTask(String(id)).then(()=>{props.onTaskDelete()})
+  };
+
+  const handleSetColor = (cor:string) => {
+    
+    const task: ITask = {
+      description: description,
+      favorite: String(isImportant) ,
+      title: title,
+      id: id,
+      color: cor,
+    };
+    updateTask(String(id),task);
   };
 
   return (
@@ -97,7 +105,7 @@ const Card = (props: ICard) => {
       <div className={styles.iconsContainer}>
         <div className={styles.iconsEditors}>
           <PencilIcon onClick={handleClick} />
-          <ColorPicker setColor={setColor} />
+          <ColorPicker setColor={setColor} handleSetColor={handleSetColor}/>
         </div>
         <XIcon  onClick={handleDelete} />
       </div>
